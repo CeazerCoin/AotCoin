@@ -34,7 +34,10 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+    background-image: url('/Users/fernandthomaspaullouis/Downloads/crypto-anticipation-page-main/src/files/bg.png');
+    background-size: cover;
   }
+  
   ::selection {
     @apply bg-theme-red/30 text-theme-gold;
   }

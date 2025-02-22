@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Top Flame Animation</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fireCanvas"></canvas>
+  <script>
+    const canvas = document.getElementById('fireCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Adjust canvas size to fill the window
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Particle system settings
+    const particles = [];
+    const maxParticles = 200;
+
+    class Particle {
+      constructor() {
+        // Start at a random horizontal position, just above the canvas
+        this.x = Math.random() * canvas.width;
+        this.y = -10; 
+        this.size = Math.random() * 20 + 10;
+        this.speed = Math.random() * 2 + 1;
+        // Flame-like color: mix of red/orange tones
+        const r = 255;
+        const g = Math.floor(Math.random() * 155);
+        const b = 0;
+        this.color = `rgba(${r}, ${g}, ${b}, 0.8)`;
+        this.opacity = 1;
+      }
+      update() {
+        // Move downward
+        this.y += this.speed;
+        // Gradually fade and shrink
+        this.opacity -= 0.005;
+        this.size *= 0.995;
+      }
+      draw() {
+        // Create a radial gradient for a glowing effect
+        let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+        gradient.addColorStop(0, `rgba(255,255,255,${this.opacity})`);
+        gradient.addColorStop(0.3, this.color);
+        gradient.addColorStop(1, `rgba(0,0,0,0)`);
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function createParticle() {
+      if (particles.length < maxParticles) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      // Clear the canvas on each frame
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Create new particles continuously
+      createParticle();
+      
+      // Update and draw each particle
+      for (let i = particles.length - 1; i >= 0; i--) {
+        let p = particles[i];
+        p.update();
+        p.draw();
+        // Remove particles that have faded out or left the screen
+        if (p.y - p.size > canvas.height || p.opacity <= 0) {
+          particles.splice(i, 1);
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+  </script>
+</body>
+</html>

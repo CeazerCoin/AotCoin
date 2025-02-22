@@ -1,25 +1,22 @@
-
-import { Twitter, Github, Linkedin } from 'lucide-react';
-
 const SocialLinks = () => {
-  const links = [
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Github, href: '#', label: 'Github' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  ];
-
   return (
     <div className="flex gap-6 items-center justify-center">
-      {links.map(({ icon: Icon, href, label }) => (
-        <a
-          key={label}
-          href={href}
-          aria-label={label}
-          className="text-purple-light hover:text-purple-primary transition-colors duration-200"
+      <a
+        href="https://x.com/CoinAot"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          fill="currentColor"
+          className="bi bi-twitter-x"
+          viewBox="0 0 16 16"
         >
-          <Icon size={24} />
-        </a>
-      ))}
+          <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+        </svg>
+      </a>
     </div>
   );
 };
