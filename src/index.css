@@ -34,7 +34,7 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    background-image: url('/Users/fernandthomaspaullouis/Downloads/crypto-anticipation-page-main/src/files/bg.png');
+    background-image: url('files/bg.png');
     background-size: cover;
   }
   
