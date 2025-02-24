@@ -8,6 +8,13 @@ import BG from '@/files/Untitled design.png';
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center p-4 relative overflow-hidden">
+      {/* Icon on top-left corner */}
+      <img
+        src={logo}
+        alt="AOT Logo"
+        className="absolute top-4 left-[-30px] w-[200px]"  // Adjust size using w-20 (20px wide)
+      />
+
       {/* SocialLinks in the top-right corner */}
       <div className="absolute top-8 right-10">
         <SocialLinks />
@@ -43,8 +50,6 @@ const Index = () => {
       </main>
 
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-theme-red/5 blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 bg-theme-gold/5 blur-3xl" />
     </div>
   );
 };
