@@ -20,7 +20,7 @@ const Index = () => {
         <SocialLinks />
       </div>
 
-      <main className="container max-w-4xl mx-auto text-center z-10 animate-fade-up space-y-[500px]">
+      <main className="container max-w-4xl mx-auto text-center z-10 animate-fade-up space-y-[400px]">
         {/* Logo */}
         {/* <div className="inline-block animate-float">
           <img
